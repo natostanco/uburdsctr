@@ -1,0 +1,259 @@
+{
+  "monitors": {
+    "fan": {
+      "monitor_pid": 1,
+      "monitor_ppid": 0,
+      "event_count": 14,
+      "main_process": {
+        "pid": 13,
+        "name": "sensor",
+        "path": "/opt/dockerslim/bin/sensor",
+        "cmd": "/opt/dockerslim/bin/sensor",
+        "cwd": "/",
+        "root": "/",
+        "ppid": 1
+      },
+      "processes": {
+        "13": {
+          "pid": 13,
+          "name": "sensor",
+          "path": "/opt/dockerslim/bin/sensor",
+          "cmd": "/opt/dockerslim/bin/sensor",
+          "cwd": "/",
+          "root": "/",
+          "ppid": 1
+        }
+      },
+      "process_files": {
+        "13": {
+          "/bin/mkdir": {
+            "event_count": 3,
+            "first_eid": 0,
+            "reads": 2
+          },
+          "/etc/ld.so.cache": {
+            "event_count": 1,
+            "first_eid": 0
+          },
+          "/lib/x86_64-linux-gnu/ld-2.19.so": {
+            "event_count": 2,
+            "first_eid": 0,
+            "reads": 1
+          },
+          "/lib/x86_64-linux-gnu/libc-2.19.so": {
+            "event_count": 2,
+            "first_eid": 0,
+            "reads": 1
+          },
+          "/lib/x86_64-linux-gnu/libdl-2.19.so": {
+            "event_count": 2,
+            "first_eid": 0,
+            "reads": 1
+          },
+          "/lib/x86_64-linux-gnu/libpcre.so.3.13.1": {
+            "event_count": 2,
+            "first_eid": 0,
+            "reads": 1
+          },
+          "/lib/x86_64-linux-gnu/libselinux.so.1": {
+            "event_count": 2,
+            "first_eid": 0,
+            "reads": 1
+          }
+        }
+      }
+    },
+    "pt": {
+      "arch_name": "amd64",
+      "syscall_count": 69,
+      "syscall_num": 13,
+      "syscall_stats": {
+        "0": {
+          "num": 0,
+          "name": "read",
+          "count": 6
+        },
+        "1": {
+          "num": 1,
+          "name": "write",
+          "count": 2
+        },
+        "10": {
+          "num": 10,
+          "name": "mprotect",
+          "count": 10
+        },
+        "11": {
+          "num": 11,
+          "name": "munmap",
+          "count": 2
+        },
+        "12": {
+          "num": 12,
+          "name": "brk",
+          "count": 3
+        },
+        "137": {
+          "num": 137,
+          "name": "statfs",
+          "count": 2
+        },
+        "158": {
+          "num": 158,
+          "name": "arch_prctl",
+          "count": 1
+        },
+        "2": {
+          "num": 2,
+          "name": "open",
+          "count": 6
+        },
+        "21": {
+          "num": 21,
+          "name": "access",
+          "count": 6
+        },
+        "3": {
+          "num": 3,
+          "name": "close",
+          "count": 8
+        },
+        "5": {
+          "num": 5,
+          "name": "fstat",
+          "count": 6
+        },
+        "59": {
+          "num": 59,
+          "name": "execve",
+          "count": 1
+        },
+        "9": {
+          "num": 9,
+          "name": "mmap",
+          "count": 16
+        }
+      }
+    }
+  },
+  "image": {
+    "files": [
+      {
+        "file_type": "File",
+        "file_path": "/bin/mkdir",
+        "mode": "-rwxr-xr-x",
+        "flags": {
+          "R": true
+        },
+        "data_type": "ELF 64-bit LSB  executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, BuildID[sha1]=cfb2c757d6986421e42ff336f38663aeae5870e5, stripped",
+        "file_size": 51936,
+        "sha1_hash": "a880a1f35311a7d34c9b2ca10418bd6ee94eff58"
+      },
+      {
+        "file_type": "File",
+        "file_path": "/etc/ld.so.cache",
+        "mode": "-rw-r--r--",
+        "data_type": "data",
+        "file_size": 12573,
+        "sha1_hash": "bf3f2aeefa6d123b0b03f8b0de9dd654336db2eb"
+      },
+      {
+        "file_type": "File",
+        "file_path": "/lib/x86_64-linux-gnu/ld-2.19.so",
+        "mode": "-rwxr-xr-x",
+        "flags": {
+          "R": true
+        },
+        "data_type": "ELF 64-bit LSB  shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=2a816c3ebba4e12813fbd34b06fbd25bc892a67f, stripped",
+        "file_size": 149120,
+        "sha1_hash": "d8ddcda80006264665b1e9d72855438a66930269"
+      },
+      {
+        "file_type": "Symlink",
+        "file_path": "/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+        "mode": "Lrwxrwxrwx",
+        "link_ref": "ld-2.19.so",
+        "file_size": 10
+      },
+      {
+        "file_type": "File",
+        "file_path": "/lib/x86_64-linux-gnu/libc-2.19.so",
+        "mode": "-rwxr-xr-x",
+        "flags": {
+          "R": true
+        },
+        "data_type": "ELF 64-bit LSB  shared object, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), BuildID[sha1]=5382058b69031caa9b9996c11061cd164c9398ff, for GNU/Linux 2.6.24, stripped",
+        "file_size": 1840928,
+        "sha1_hash": "abcda3d9548f3fbdea4bbd1f4d3cc44c3866457f"
+      },
+      {
+        "file_type": "Symlink",
+        "file_path": "/lib/x86_64-linux-gnu/libc.so.6",
+        "mode": "Lrwxrwxrwx",
+        "link_ref": "libc-2.19.so",
+        "file_size": 12
+      },
+      {
+        "file_type": "File",
+        "file_path": "/lib/x86_64-linux-gnu/libdl-2.19.so",
+        "mode": "-rw-r--r--",
+        "flags": {
+          "R": true
+        },
+        "data_type": "ELF 64-bit LSB  shared object, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), BuildID[sha1]=67699ffda9fd2a552032e0652a242e82d65aa10d, for GNU/Linux 2.6.24, stripped",
+        "file_size": 14664,
+        "sha1_hash": "455e77dca971617d9c84f9a070cd7cbb71d12fd2"
+      },
+      {
+        "file_type": "Symlink",
+        "file_path": "/lib/x86_64-linux-gnu/libdl.so.2",
+        "mode": "Lrwxrwxrwx",
+        "link_ref": "libdl-2.19.so",
+        "file_size": 13
+      },
+      {
+        "file_type": "Symlink",
+        "file_path": "/lib/x86_64-linux-gnu/libpcre.so.3",
+        "mode": "Lrwxrwxrwx",
+        "link_ref": "libpcre.so.3.13.1",
+        "file_size": 17
+      },
+      {
+        "file_type": "File",
+        "file_path": "/lib/x86_64-linux-gnu/libpcre.so.3.13.1",
+        "mode": "-rw-r--r--",
+        "flags": {
+          "R": true
+        },
+        "data_type": "ELF 64-bit LSB  shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=704ecf4ecd0833161ba421c6bbd43faef1915313, stripped",
+        "file_size": 252032,
+        "sha1_hash": "43601a05222ec3d85d73da2b36b801c8b5c1e718"
+      },
+      {
+        "file_type": "File",
+        "file_path": "/lib/x86_64-linux-gnu/libselinux.so.1",
+        "mode": "-rw-r--r--",
+        "flags": {
+          "R": true
+        },
+        "data_type": "ELF 64-bit LSB  shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=cc197f7a4642ce2132c99ae1f5598a601650ef0c, stripped",
+        "file_size": 134296,
+        "sha1_hash": "1457c85b30c83cb6faba31862cb012435172719c"
+      },
+      {
+        "file_type": "Symlink",
+        "file_path": "/lib64/ld-linux-x86-64.so.2",
+        "mode": "Lrwxrwxrwx",
+        "link_ref": "/lib/x86_64-linux-gnu/ld-2.19.so",
+        "file_size": 32
+      },
+      {
+        "file_type": "Symlink",
+        "file_path": "/usr/lib/x86_64-linux-gnu/libdl.so",
+        "mode": "Lrwxrwxrwx",
+        "link_ref": "/lib/x86_64-linux-gnu/libdl.so.2",
+        "file_size": 32
+      }
+    ]
+  }
+}

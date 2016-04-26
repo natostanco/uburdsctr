@@ -1,0 +1,38 @@
+# new image
+ADD file:ed7184ebed5263e677853672e93d079d09ce4a5eeca75c527aed68281c06fc88 in /
+RUN set -xe && \
+	echo '#!/bin/sh' > /usr/sbin/policy-rc.d && \
+	echo 'exit 101' >> /usr/sbin/policy-rc.d && \
+	chmod +x /usr/sbin/policy-rc.d && \
+	dpkg-divert --local --rename --add /sbin/initctl && \
+	cp -a /usr/sbin/policy-rc.d /sbin/initctl && \
+	sed -i 's/^exit.*/exit 0/' /sbin/initctl && \
+	echo 'force-unsafe-io' > /etc/dpkg/dpkg.cfg.d/docker-apt-speedup && \
+	echo 'DPkg::Post-Invoke { "rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true"; };' > /etc/apt/apt.conf.d/docker-clean && \
+	echo 'APT::Update::Post-Invoke { "rm -f /var/cache/apt/archives/*.deb /var/cache/apt/archives/partial/*.deb /var/cache/apt/*.bin || true"; };' >> /etc/apt/apt.conf.d/docker-clean && \
+	echo 'Dir::Cache::pkgcache ""; Dir::Cache::srcpkgcache "";' >> /etc/apt/apt.conf.d/docker-clean && \
+	echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/docker-no-languages && \
+	echo 'Acquire::GzipIndexes "true"; Acquire::CompressionTypes::Order:: "gz";' > /etc/apt/apt.conf.d/docker-gzip-indexes
+RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
+CMD ["/bin/bash"]
+# end of image: ubuntu (id: sha256:b72889fa879c08b224cc33d260c434ec6295b56c7677b5ff6213b5296df31aaf tags: 14.04,latest)
+
+# new image
+RUN groupadd -r redis && \
+	useradd -r -g redis redis
+RUN sudo apt-get update
+RUN apt-get install wget build-essential -q -y
+RUN wget http://download.redis.io/redis-stable.tar.gz
+RUN export CFLAGS="-Os -ffast-math -ffunction-sections -fdata-sections -Wl,--gc-sections -march=native" && \
+	export CXXFLAGS="${CFLAGS}" LDFLAGS="-Wl,--gc-sections" && \
+	tar xvzf redis-stable.tar.gz && \
+	cd redis-stable && \
+	make && \
+	sudo make install && \
+	find /usr/local/bin/ -name "redis*" | xargs strip -s -R .comment -R .gnu.version --strip-unneeded
+COPY file:0b30097236d58fae7e86dec8d025ad103b2429580bf195a3560ed582dd4ceb90 in /
+VOLUME [/var/lib/redis /etc/redis]
+ENTRYPOINT ["./entry.sh"]
+EXPOSE 6379/tcp
+RUN apt-get clean
+# end of image: uburdsctr (id: sha256:c3cb62377b4d92d57a8edbdec4072295971bafbe61b000210c07895c8fad220c tags: latest)

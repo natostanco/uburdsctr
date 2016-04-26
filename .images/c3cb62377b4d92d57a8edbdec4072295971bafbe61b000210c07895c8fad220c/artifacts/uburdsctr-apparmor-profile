@@ -1,0 +1,22 @@
+
+profile uburdsctr-apparmor-profile flags=(attach_disconnected,mediate_deleted) {
+
+  network,
+
+
+
+  /bin/mkdir r,
+  /etc/ld.so.cache r,
+  /lib/x86_64-linux-gnu/ld-2.19.so r,
+  /lib/x86_64-linux-gnu/ld-linux-x86-64.so.2 r,
+  /lib/x86_64-linux-gnu/libc-2.19.so r,
+  /lib/x86_64-linux-gnu/libc.so.6 r,
+  /lib/x86_64-linux-gnu/libdl-2.19.so r,
+  /lib/x86_64-linux-gnu/libdl.so.2 r,
+  /lib/x86_64-linux-gnu/libpcre.so.3 r,
+  /lib/x86_64-linux-gnu/libpcre.so.3.13.1 r,
+  /lib/x86_64-linux-gnu/libselinux.so.1 r,
+  /lib64/ld-linux-x86-64.so.2 r,
+  /usr/lib/x86_64-linux-gnu/libdl.so r,
+
+}
