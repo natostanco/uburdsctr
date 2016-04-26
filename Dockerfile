@@ -10,7 +10,7 @@ RUN apt-get update \
  && tar xvzf redis-stable.tar.gz \
  && cd redis-stable \
  && make \
- && sudo make install \
+ && make install \
  && find /usr/local/bin/ -name "redis*" | xargs strip -s -R .comment -R .gnu.version --strip-unneeded
 
 COPY entry.sh /
