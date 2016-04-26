@@ -1,22 +1,22 @@
 services:
 - docker
 script:
-- export SAVE=$PWD cnt="ubusqlctr"
+- export SAVE=$PWD cnt="uburdsctr"
 - docker build -t ${cnt} .
-- sudo ./docker-slim build --continue-after probe --mount /var/lib/mysql:/var/lib/mysql --http-probe ${cnt}
+- sudo ./docker-slim build --continue-after probe --http-probe ${cnt}
 before_deploy:
 - cd
 - wget `curl -s https://api.github.com/repos/appc/docker2aci/releases | grep browser_download_url
   | head -n 1 | cut -d '"' -f 4` -O d2a.tar.gz
-- tar -zxf d2a.tar.gz && rm d2a.tar.gz && d2a=`ls | grep "docker2aci*"` && d2a=`basename
-  $d2a` && alias d2a='${PWD}/${d2a}/docker2aci'
+- tar -zxf d2a.tar.gz && rm d2a.tar.gz && d2a=`ls | grep "docker2aci*"` && d2a=`basename  $d2a`
+  && alias d2a='${PWD}/${d2a}/docker2aci'
 - docker save -o ${cnt}.slim.tar ${cnt}.slim
 - "${PWD}/${d2a}/docker2aci ${cnt}.slim.tar"
 - xz -9 -c ${cnt}.slim.tar > ${cnt}.slim.tar.xz
 deploy:
   provider: releases
   api_key:
-    secure: qdwzSqdO3vzl0jZFnB6tpHdTnC10dhex+9Z2kdyc3quO5MpnMjqPhpPcTyDBoO01XuSVsIgCk8am3wzKxofIrheaERaeF8adFtbbk7jVkQHt+JELIisicd+kr1RxqtRMSfvvJ4fffjsp9OYAiMKkpfwhKDoWjZTCpG6nMnmMrVAWrMSMfEKxy5MxQZdAX0JpH/2cE22Qp8vHmynlAJySvtHDfDCFBvKzWxWTfixkh+WPqf045huSl3ejNoYlGvfpB43uwOlU2bQbdiwfuZld8aYQ9NaaoVFO4Q3yPfkAWiwsBXgL+t1+GWezPnTxUdvMNdk0N+mRdgvKRtZCy5rXvUMe5H9QbBJYicwQt2oJoSi+5p/uL6VNnjreg8GIgt5ndgo8ah5oHxLn94Cg/KboCbFw0/vheJD8JB63kDc09RG1eBgY1HYN1smrZoAjTx70n+le+RXorH7xVZO01Wu6dGOKjw65M/IYpa1+tgjl55kRlJEyRWyGq412Xq+WXlsqB8oBOs+TR15sQaB8xjYQ6kCpefejdlg0juwLJda/0E/gaPPkIpLTahRcop7S+oeLZiLC7zcS+uPGe+p7ow2k0pRZe25Z7EHb5OVBPAOaweWtCZiRNTioib0D3moo1UEkEGUTjWpDlBToUtFSPY//5vxHkBfN2fizLH+pKw3/Atc=
+    secure: U4MaUjIkqeGVT1rbV/8vYjJHvoq+ZQK786qSemXZcmPA2F83LldmHC/z6WjvI7JMcWZKEvPXgEYVMfEAyolDtpWBB72dq7pjgHmEOgQay8P/5mTAuq44qTox4TJCG7km05BEOK21ho1nsa57dJOWbTWMLAftR+vQSfuS32ONm6sqSuNT8gbH2b20idRZy8+egVJjE5BhkeD9o+KixGZbtKj44bCw99M9WdEMq29KUrlFK9ISck6iknjje9eXEXxTs7M9GV/0/zuOvn1TTOIWKtySMKjQI96lTIZ4Z8eDcJ27fLzBUEdMF/mSENFFqIQgZw/Q9P638wI39lybZyNFnYD5GwbyfbppBCuYWjmGqkhNN2ib6ObXmogXEdsW8A6HKYSx/9uPwbaJfqV0xorLQd/r4QVwc47o52IIaQFeLgvnMIC2/mMYOJZ6C/+cQiFtriV9t2dnwzDyupsuO66TiZ9RE49/LEojbHkmKRSJKsHSSVewU5k6Lx2qrDVeqlKSse3gUajTa6kKW7/nPwgEIAIdI/X13LA52ONdg/HCqB7M83Aum1mGm6JahTm6E2cTNgm/DtKGierqabvc/dnntaTeOxjVAXxggC7Ujwo31llZt27VBaWkWwYI/OXBsrx7kH0Xfr2fA2MtGOZcqiSR1d02vGXqXt+e1l2NGejxWlY=
   file:
   - ${cnt}.slim.tar.xz 
   - ${cnt}.slim-latest.aci 
