@@ -1,13 +1,11 @@
 FROM ubuntu:latest
 
 RUN groupadd -r redis && useradd -r -g redis redis
-#RUN sudo apt-get update \
-# && apt-get install wget build-essential -q -y \
-# && wget http://download.redis.io/redis-stable.tar.gz \
-RUN sudo apt-get update
-RUN apt-get install wget build-essential -q -y
-RUN wget http://download.redis.io/redis-stable.tar.gz
-RUN export CFLAGS="-Os -ffast-math -ffunction-sections -fdata-sections -Wl,--gc-sections -march=native" \
+
+RUN apt-get update \
+ && apt-get install wget build-essential -q -y \
+ && wget http://download.redis.io/redis-stable.tar.gz \
+ && export CFLAGS="-Os -ffast-math -ffunction-sections -fdata-sections -Wl,--gc-sections -march=native" \
  && export CXXFLAGS="${CFLAGS}" LDFLAGS="-Wl,--gc-sections" \
  && tar xvzf redis-stable.tar.gz \
  && cd redis-stable \
