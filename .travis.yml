@@ -3,7 +3,7 @@ services:
 script:
 - export SAVE=$PWD cnt="uburdsctr" slim=".slim"
 - docker build -t ${cnt} .
-- sudo ./docker-slim build --include-path /usr/bin/redis-check-aof --continue-after probe --http-probe ${cnt}
+- sudo ./docker-slim build --include-path /usr/local/bin --continue-after probe --http-probe ${cnt}
 before_deploy:
 - cd
 - wget `curl -s https://api.github.com/repos/appc/docker2aci/releases | grep browser_download_url
